@@ -1,7 +1,35 @@
 # Creative Direction — Isaiah Ball Personal Brand Website
 
 Last updated: 2026-08-17
-Status: **Recommended, not yet approved — Direction 1, "The Debut."** This direction was marked approved in an earlier working session before the intended human + ChatGPT creative-direction review gate had taken place. That was premature: all three directions remain open until that joint review happens. Asset review is complete (`DISCOVERY.md` §9): 20 usable photos, no video, clearing Direction 1's minimum-asset threshold with room to spare — but this is asset readiness, not direction approval. Do not proceed to `/aurex-page-design` or `/aurex-copy` until the human + ChatGPT review of all three directions is complete.
+Status: **FINAL APPROVED — Direction 1, "The Debut," with required refinements below.** Approved through the completed human + ChatGPT creative-direction review gate. This supersedes the earlier premature approval and the "recommended, not approved" holding status that followed it. See §0 for the approved system as it now stands; §§1-4 are preserved below as the exploration record that led here, with superseded specifics flagged inline. Page design and copy planning may now proceed; full page implementation still waits on that planning being reviewed.
+
+## 0. Approved creative direction (final)
+
+Direction 1, "The Debut," is approved as the core narrative system, with the following required refinements from the creative-direction review:
+
+**1. The numbered Look system is the primary ownable device.** Look 01, Look 02, Look 03, etc. remains the organizing idea — unchanged from the original Direction 1 concept (§3, Direction 1, "Narrative idea").
+
+**2. Direction 2's strongest visual principles are incorporated, not left behind.** The approved system pulls from "The Lookbook" (§3, Direction 2): editorial typography, asymmetric compositions, varied image scale, edge-bleeding photography where appropriate, sophisticated negative space, and deliberate mobile recomposition (not just stacking). This is a real merge, not a footnote — the visual thesis is no longer "confident restraint" alone (original §3, Direction 1) but confident restraint _executed with editorial precision_.
+
+**3. Look compositions vary; the numbering is what stays consistent.** This revises the original Direction 1 layout philosophy, which called for each Look to be a uniform full-viewport section. That's rejected now: identical repeated sections would flatten exactly the asymmetric/varied-scale quality pulled in from Direction 2. Instead, each Look's composition should be driven by what its own imagery supports — the 3-image studio/merch set might read as an asymmetric multi-image spread within one Look, while the black-and-white portrait might stand alone as a single full-bleed moment. The numbering (Look 01, 02, 03...) is the consistent, recognizable thread across otherwise-varied compositions.
+
+**4. Copy stays commercially direct; chapter language is not forced everywhere.** The original Direction 1 CTA integration (§3, Direction 1, "CTA and form integration") specified framing the inquiry form as "Chapter: Work With Isaiah" — that specific device is now rejected as over-applying the metaphor. The numbered-Look system stays restrained to where it's genuinely useful (labeling the portfolio), and CTAs, form copy, and conversion-critical language stay plain and direct ("Work with Isaiah," "Start an inquiry," or similar — not forced chapter/narrative phrasing).
+
+**5. External positioning: fashion creator, model, and creative collaborator — not "nano-influencer" as identity.** `DISCOVERY.md`'s nano-influencer trust/engagement research (§4-5) remains valid and useful for internal strategy and media-kit stat framing, but it does not define the brand or become a defensive selling point on the site itself. The site should read as confident work from a working creative, not as an argument for why a small following is fine.
+
+**6. Nashville is his base, not his ceiling.** The reviewed asset set includes real Boston and NYC content (`DISCOVERY.md` §9) — the site should communicate Nashville as home base while letting that travel imagery carry a broader sense of range, rather than framing him as strictly hyperlocal.
+
+**7. Palette is derived from the real photography, not imposed abstractly.** This revises both original directions' color logic: Direction 1 called for an abstractly-chosen neutral-plus-accent, and Direction 2 defaulted to "mostly black-and-white or desaturated." Neither is right for the approved system. The reviewed photo set (`DISCOVERY.md` §9) actually carries warm, lived-in tones — denim blues, olive/khaki, brick and rust reds, vintage cap colors, warm skin-tone-forward lighting in the studio set — not a stark luxury monochrome. Palette work in page design should pull directly from these images rather than choosing a generic "premium" black-and-white treatment or an abstract accent color.
+
+**8. Direction 3, "The Reel," is rejected for launch — preserved as a future evolution.** The asset review found no usable video (`DISCOVERY.md` §9). The film/frame-based concept in §3, Direction 3 is not being built now, but it remains a documented option to revisit if and when Isaiah has real motion/video assets worth building around.
+
+**9. Overall feel: fashion-forward, restrained, youthful, slightly raw, confident, highly art-directed.** This refines the tone beyond the original "confident restraint" (§3, Direction 1, "Visual thesis") — the approved direction should feel current and a little unpolished at the edges, not luxury-brand austere. Explicitly avoid: generic luxury tropes, generic influencer-site templates, excessive UI decoration, and concept gimmicks (numbering or editorial devices used for their own sake rather than because the content earns them).
+
+**10. Commercial objective is unchanged and remains primary.** Clear inquiry conversion for brand partnerships, modeling, and creative/local projects — per `DISCOVERY.md` §11 and the original Direction 1 "CTA and form integration," now executed with more direct copy per refinement 4 above.
+
+---
+
+**The following sections (§1-§7) are the exploration record that led to the §0 approval above — kept for context, not as the current spec.** Where a section conflicts with §0, §0 governs.
 
 ## 1. Creative opportunity summary
 
@@ -122,6 +150,8 @@ Seeds 1, 4, 6, 7, and 8 were tested and set aside for the reasons above; 2, 3, a
 
 ## 4. Recommended direction and rationale
 
+_(Historical: this was the recommendation going into the review. See §0 for the approved outcome, which adopted this recommendation with required refinements rather than as originally written.)_
+
 **Recommend Direction 1 — "The Debut."**
 
 It is the only one of the three that turns Discovery's single biggest constraint — no existing brand-collab track record — into the actual organizing idea, rather than a gap the design has to work around or disguise. It's also the lowest-risk to execute well: it doesn't require video assets that haven't been confirmed (Direction 3's dependency), and it doesn't require the level of asymmetric-layout precision that Direction 2 needs to avoid looking like a generic "editorial template" (a real risk called out in that direction's own guardrails). It scales cleanly as Isaiah's portfolio genuinely grows — new chapters get added — so the site's story stays true rather than needing a redesign once he has more work to show.
@@ -134,16 +164,8 @@ Across all three directions, explicitly avoided: generic "influencer site" defau
 
 ## 6. Required imagery/video/visual assets
 
-Blocking for any direction: the actual asset review from `DISCOVERY.md` §9 has not happened yet. Specifically needed before implementation:
-
-- At minimum 4-6 genuinely strong, high-resolution images (Direction 1 minimum) — more useful for Direction 2
-- Confirmation of any usable video content, resolution, and length — required to validate Direction 3, valuable but optional for Direction 1's chapter-opener treatment
-- Confirmation of usage rights for any content shot by outside photographers/videographers
-- If Direction 1 is chosen: identification of one accent color pulled from actual wardrobe/imagery, not chosen abstractly
+**RESOLVED.** The asset review happened (`DISCOVERY.md` §9): 20 usable photos, no video. This satisfied Direction 1's minimum and is the direct basis for §0's refinements 3, 6, and 7 (varied Look composition, Nashville-plus-range framing, and photo-derived palette). Usage rights confirmed clear — all shots are Isaiah's to use freely, no outside-photographer credit needed.
 
 ## 7. Decision required from human creative lead
 
-**Blocking:** a joint human + ChatGPT review of all three directions, per the intended Aurex creative-direction review gate. Direction 1 is the working recommendation, not a final decision — Direction 2 and Direction 3 remain live options until that review happens.
-
-1. **Direction approval** — confirm Direction 1 ("The Debut"), or select Direction 2 or 3, or request a blended approach. This decision belongs to the human + ChatGPT review, not to this document alone.
-2. **Asset review timing** — now resolved: Isaiah's actual photo bank has been reviewed (`DISCOVERY.md` §9, 20 usable photos, no video). That review informs but does not substitute for the direction-approval decision above.
+**RESOLVED — 2026-08-17.** The human + ChatGPT creative-direction review gate is complete. Final decision: Direction 1, "The Debut," approved with the required refinements documented in §0. This is final approval of the high-level creative direction — see `AUREX-STATUS.md` for current-phase tracking and next steps.
