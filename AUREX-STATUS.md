@@ -32,7 +32,7 @@ Run directly, not just inspected, from a clean `.next` state:
 3. `3fb0c2f` — Record completed asset review
 4. `670752c` — Status update (superseded)
 5. `e522508` — Correct premature creative-direction approval (reverted to "recommended, not approved")
-6. _(pending)_ — Record final creative-direction approval with required refinements, per completed human + ChatGPT review gate
+6. `d7c0f51` — Record final creative-direction approval with required refinements, per completed human + ChatGPT review gate
 
 ## Decisions
 
