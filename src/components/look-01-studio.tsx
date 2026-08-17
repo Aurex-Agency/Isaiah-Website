@@ -27,11 +27,11 @@ export function Look01Studio() {
           </h1>
           <ul className="text-paper/85 mt-4 flex flex-wrap gap-x-3 gap-y-1 font-sans text-base sm:text-lg">
             <li>Fashion Creator</li>
-            <li aria-hidden="true" className="text-paper/40">
+            <li aria-hidden="true" className="text-paper/55">
               /
             </li>
             <li>Model</li>
-            <li aria-hidden="true" className="text-paper/40">
+            <li aria-hidden="true" className="text-paper/55">
               /
             </li>
             <li>Creative Partner</li>
@@ -49,6 +49,15 @@ export function Look01Studio() {
               View Socials
             </EditorialLink>
           </div>
+        </div>
+
+        <div className="pointer-events-none absolute right-5 bottom-10 hidden flex-col items-center gap-3 sm:right-8 sm:bottom-14 sm:flex">
+          <span className="text-paper/55 font-sans text-xs tracking-[0.2em] uppercase [writing-mode:vertical-lr]">
+            Scroll
+          </span>
+          <span className="bg-paper/25 relative h-10 w-px overflow-hidden">
+            <span className="scroll-cue-line bg-paper absolute inset-x-0 top-0 h-1/2" />
+          </span>
         </div>
       </div>
 

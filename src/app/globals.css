@@ -61,3 +61,16 @@ body {
 .snap-row {
   scrollbar-width: none;
 }
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.scroll-cue-line {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}

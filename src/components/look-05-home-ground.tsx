@@ -33,6 +33,7 @@ export function Look05HomeGround() {
       >
         <RevealImage
           emphasis
+          hover={false}
           className="bg-paper aspect-[4/5] w-[72%] shrink-0 p-2.5"
         >
           <div className="relative h-full w-full">
@@ -67,7 +68,7 @@ export function Look05HomeGround() {
 
       {/* Desktop: one image gets the print/mat treatment at larger scale, two supporting images stay small and unframed */}
       <div className="hidden px-8 sm:grid sm:grid-cols-12 sm:items-end sm:gap-6">
-        <RevealImage emphasis className="bg-paper col-span-5 aspect-[4/5] p-3">
+        <RevealImage emphasis hover={false} className="bg-paper col-span-5 aspect-[4/5] p-3">
           <div className="relative h-full w-full">
             <Image
               src="/images/looks/05-home-ground/01-hero-cabin-door.jpg"

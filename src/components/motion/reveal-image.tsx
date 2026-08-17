@@ -11,6 +11,9 @@ type RevealImageProps = {
   /** "up" (default) enters from below; "left"/"right" slide in from a
    * viewport edge instead — use sparingly, on selected supporting images. */
   direction?: "up" | "left" | "right";
+  /** Subtle hover zoom on desktop pointer devices. Disabled for images
+   * that already carry their own framing (e.g. the Look 05 mat treatment). */
+  hover?: boolean;
   className?: string;
 };
 
@@ -25,6 +28,7 @@ export function RevealImage({
   delay = 0,
   emphasis = false,
   direction = "up",
+  hover = true,
   className = "",
 }: RevealImageProps) {
   const reduce = useSafeReducedMotion();
@@ -32,7 +36,7 @@ export function RevealImage({
 
   return (
     <motion.div
-      className={`relative ${className}`}
+      className={`relative overflow-hidden ${className}`}
       initial={{
         opacity: 0,
         y: offset.y,
@@ -48,7 +52,17 @@ export function RevealImage({
         ease: [0.22, 1, 0.36, 1],
       }}
     >
-      {children}
+      {hover ? (
+        <motion.div
+          className="relative h-full w-full"
+          whileHover={reduce ? undefined : { scale: 1.035 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {children}
+        </motion.div>
+      ) : (
+        children
+      )}
     </motion.div>
   );
 }

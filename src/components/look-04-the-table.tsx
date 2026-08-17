@@ -1,63 +1,68 @@
 import Image from "next/image";
+import { ParallaxImage } from "./motion/parallax-image";
 import { ParallaxText } from "./motion/parallax-text";
-import { RevealImage } from "./motion/reveal-image";
 import { RevealTitle } from "./motion/reveal-title";
+
+const OPPORTUNITIES = [
+  "Styled Shoots",
+  "Events",
+  "Hospitality Partnerships",
+  "Lifestyle Campaigns",
+];
 
 export function Look04TheTable() {
   return (
     <section
       id="look-04"
       data-look-number="04"
-      className="bg-ink relative -mt-6 overflow-hidden pt-4 pb-20 sm:-mt-10 sm:pt-6 sm:pb-28"
+      className="bg-ink relative -mt-6 overflow-hidden py-20 sm:-mt-10 sm:py-0"
     >
-      <ParallaxText range={48}>
-        <RevealTitle className="font-display text-paper/25 px-5 text-[5.5rem] leading-none select-none sm:px-8 sm:text-[9rem]">
-          04
-        </RevealTitle>
-      </ParallaxText>
+      <div className="grid gap-10 px-5 sm:min-h-screen sm:grid-cols-12 sm:items-center sm:gap-8 sm:px-8 sm:py-24">
+        <div className="relative sm:col-span-6">
+          <ParallaxText
+            range={44}
+            className="pointer-events-none absolute -top-6 -left-2 select-none sm:-top-10"
+          >
+            <span className="font-display text-paper/10 text-[6rem] leading-none sm:text-[12rem]">
+              04
+            </span>
+          </ParallaxText>
 
-      <div className="relative -mt-6 flex justify-end sm:-mt-10">
-        <div className="hidden max-w-xs px-8 sm:absolute sm:inset-y-0 sm:left-0 sm:flex sm:flex-col sm:justify-center">
-          <p className="text-paper/55 font-sans text-xs tracking-[0.15em] uppercase sm:text-sm">
-            Hospitality + Experiences
-          </p>
-          <p className="font-display text-paper mt-4 text-xl leading-snug sm:text-2xl">
-            Available for styled shoots, local partnerships and
-            hospitality-focused content.
-          </p>
+          <ParallaxText range={-28} className="relative">
+            <p className="text-paper/55 mb-4 font-sans text-xs tracking-[0.15em] uppercase sm:text-sm">
+              The Table
+            </p>
+            <h2 className="font-display text-paper text-5xl leading-[0.95] sm:text-7xl">
+              <RevealTitle>Hospitality</RevealTitle>
+              <RevealTitle delay={0.1} className="text-paper/60">
+                + Experiences
+              </RevealTitle>
+            </h2>
+
+            <ul className="border-line mt-8 max-w-xs border-t pt-6 sm:mt-10">
+              {OPPORTUNITIES.map((item) => (
+                <li
+                  key={item}
+                  className="border-line text-paper/80 border-b py-3 font-sans sm:text-lg"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </ParallaxText>
         </div>
 
-        <RevealImage
-          emphasis
-          className="aspect-[3/4] w-[62%] sm:w-[34%] lg:w-[30%]"
-        >
-          <Image
-            src="/images/looks/04-the-table/01-hero-vintage-table.jpg"
-            alt="Isaiah Ball seated at a vintage garden table styled with glassware and dried florals, wearing a blazer"
-            fill
-            sizes="(min-width: 640px) 34vw, 62vw"
-            className="object-cover"
-          />
-        </RevealImage>
-      </div>
-
-      <div className="mt-6 px-5 sm:hidden">
-        <p className="text-paper/55 font-sans text-xs tracking-[0.15em] uppercase">
-          Hospitality + Experiences
-        </p>
-        <p className="font-display text-paper mt-3 text-xl leading-snug">
-          Available for styled shoots, local partnerships and
-          hospitality-focused content.
-        </p>
-      </div>
-
-      <div className="mt-6 px-5 sm:mt-10 sm:px-8">
-        <RevealTitle
-          delay={0.15}
-          className="font-display text-paper text-2xl sm:text-3xl"
-        >
-          The Table
-        </RevealTitle>
+        <div className="sm:col-span-6">
+          <ParallaxImage strength={6} className="aspect-[3/4] sm:aspect-[4/5]">
+            <Image
+              src="/images/looks/04-the-table/01-hero-vintage-table.jpg"
+              alt="Isaiah Ball seated at a vintage garden table styled with glassware and dried florals, wearing a blazer"
+              fill
+              sizes="(min-width: 640px) 45vw, 100vw"
+              className="object-cover"
+            />
+          </ParallaxImage>
+        </div>
       </div>
     </section>
   );

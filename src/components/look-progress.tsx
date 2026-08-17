@@ -54,6 +54,7 @@ export function LookProgress() {
           className="font-display text-paper/50 block text-sm tabular-nums"
         >
           {active}
+          <span className="text-paper/30"> / 06</span>
         </motion.span>
       </AnimatePresence>
     </div>

@@ -103,18 +103,31 @@ export function Look03AfterDark() {
             </RevealImage>
           </div>
         </div>
-        <RevealImage
-          delay={0.15}
-          className="mt-px ml-auto aspect-[3/4] w-[46%] sm:mr-[-6vw] lg:mr-[-8vw]"
-        >
-          <Image
-            src="/images/looks/03-after-dark/04-garden-path.jpg"
-            alt="Isaiah Ball walking a lit brick garden path at night"
-            fill
-            sizes="46vw"
-            className="object-cover"
-          />
-        </RevealImage>
+        <div className="mt-px flex items-end gap-8 lg:gap-14">
+          <div className="max-w-xs flex-1">
+            <p className="text-paper/55 font-sans text-xs tracking-[0.15em] uppercase">
+              Nashville, TN
+            </p>
+            <p className="text-paper/55 mt-1 font-sans text-xs tracking-[0.15em] uppercase">
+              Look 03 / 06
+            </p>
+            <p className="font-display text-paper mt-6 text-2xl leading-snug sm:text-3xl">
+              Editorial-ready for campaigns, events and after-hours coverage.
+            </p>
+          </div>
+          <RevealImage
+            delay={0.15}
+            className="aspect-[3/4] w-[38%] sm:mr-[-6vw] lg:mr-[-8vw]"
+          >
+            <Image
+              src="/images/looks/03-after-dark/04-garden-path.jpg"
+              alt="Isaiah Ball walking a lit brick garden path at night"
+              fill
+              sizes="38vw"
+              className="object-cover"
+            />
+          </RevealImage>
+        </div>
       </div>
     </section>
   );
