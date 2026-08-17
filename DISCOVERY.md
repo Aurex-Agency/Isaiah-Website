@@ -62,7 +62,17 @@ Isaiah is positioning across three lanes at once (sponsorship, modeling, local c
 
 ## 9. Content and asset inventory
 
-Not yet reviewed directly. CLIENT-STATED FACT that usable content exists, but nothing has been inspected. This is a blocking open question for `/aurex-page-design` and `/aurex-art-direction` — the site's hero/portfolio treatment (photo-forward vs. video-forward, how many pieces, grid vs. editorial layout) depends on what's actually usable.
+VERIFIED FACT (reviewed directly, 2026-08-17): 20 usable photos, no video. Quality and range are genuinely good — clears the minimum bar for a photo-forward site with room to spare:
+
+- One proper 3-shot studio session (Nikon Z5, Lightroom-edited, stage lighting, branded merch) — highest production value, strongest anchor image
+- Well-composed street style across varied real locations: a Nashville-area rocky quarry, a colorful mural wall, an elegant lit-column venue, a vintage garden-furniture/table setup (event-styled — directly relevant to the local-business/event buyer type), rustic cabin/barn doors, a picket fence, an ivy-covered garden building
+- Travel content beyond Nashville: Boston and NYC street scenes — CORRECTION to the local-only framing below: he has real range beyond hyperlocal content, not just a Nashville-bound presence
+- A clean black-and-white portrait crop, a strong "about" section candidate
+- Real camera gear across shots (Sony ILCE-6100/7S III, Nikon Z5, one actual film-lab scan), not just phone photos — strengthens the "professional, not hobbyist" credibility argument from §5
+- Consistent personal style throughout (vintage/thrifted caps, layered knitwear, glasses + mustache) — a real recognizable look, useful for brand consistency across the site
+- CLIENT-CONFIRMED: all shot by Isaiah himself or freely usable — no outside photo credit or usage-rights clearance needed
+
+The 20 photos naturally group into roughly 5-6 distinct "Look" chapters for Direction 1 ("The Debut," see `CREATIVE-DIRECTION.md`): studio/merch, quarry + mural, venue/event, cabin/rustic, travel, portrait. This clears Direction 1's stated minimum (4-6 strong images) with real room to spare, and confirms Direction 3 ("The Reel") is not viable at launch — no video assets exist.
 
 ## 10. Organic visibility opportunities
 
@@ -82,7 +92,7 @@ His own content mixes fashion and film ("Fashion | Film | Content" self-descript
 ## 13. Risks, constraints, and unknowns
 
 - Instagram data cannot be verified through automated means; do not build the stats section until real numbers come directly from Isaiah
-- No brand-collab history means the site's entire credibility burden falls on portfolio quality and presentation — the asset review (open question in section 9) is a real blocker before design decisions lock
+- No brand-collab history means the site's entire credibility burden falls on portfolio quality and presentation — resolved by the asset review in §9, which confirmed the photo bank supports this
 - At ~3K followers, positioning should target realistic buyers (local businesses, boutique/DTC brands, agencies open to new faces) rather than implying mega-brand readiness the numbers don't support yet
 - Current sole contact channel is a personal Gmail address — carries a legitimacy/spam-risk perception the site needs to visibly upgrade past
 
@@ -90,7 +100,7 @@ His own content mixes fashion and film ("Fashion | Film | Content" self-descript
 
 1. Replace the bare email-in-bio pattern with a real structured inquiry/booking flow — this is the single highest-leverage fix available and requires no new content from Isaiah to plan.
 2. Build an honest, well-framed stats/media-kit section that leans into the nano-influencer trust-and-engagement argument instead of hiding modest follower counts.
-3. Get and review Isaiah's actual portfolio assets before finalizing page layouts — this determines whether the site is photo-forward or video-forward and how much content it can realistically support at launch.
+3. DONE (2026-08-17): Isaiah's portfolio assets reviewed — 20 usable photos, no video, confirming a photo-forward site organized into roughly 5-6 "Look" chapters. See §9.
 4. Target hyperlocal SEO (his name, "Nashville [fashion content creator / model]") since it's genuinely low-competition and matches real local buyer search intent from agencies and businesses.
 5. Develop the editorial/lookbook creative hypothesis in `/aurex-art-direction` as a differentiator against the generic Linktree/Beacons format most creators at his tier default to.
 
