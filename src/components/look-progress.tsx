@@ -41,17 +41,17 @@ export function LookProgress() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-6 left-6 z-40 hidden sm:block"
+      className="pointer-events-none fixed bottom-6 left-6 z-40 hidden overflow-hidden sm:block"
       aria-hidden="true"
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="popLayout">
         <motion.span
           key={active}
-          initial={shouldReduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={shouldReduceMotion ? undefined : { opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          className="font-display text-paper/50 text-sm tabular-nums"
+          initial={shouldReduceMotion ? false : { y: "100%" }}
+          animate={{ y: "0%" }}
+          exit={shouldReduceMotion ? undefined : { y: "-100%" }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-paper/50 block text-sm tabular-nums"
         >
           {active}
         </motion.span>

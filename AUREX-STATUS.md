@@ -4,63 +4,73 @@ Last updated: 2026-08-17
 
 ## Current phase
 
-**Homepage implementation is complete and verified.** Built per the approved creative direction (`CREATIVE-DIRECTION.md` §0, "The Debut" with required refinements) and the reviewed `HOMEPAGE-DESIGN.md` plan, incorporating the human + ChatGPT implementation-priority refinements (identity hierarchy, reduced explanatory copy, varied per-Look composition, restrained motion). **Stopping here for human + ChatGPT visual review.** No additional pages or launch work has been started.
+**Homepage art-direction and motion refinement pass is complete and verified.** Addresses the first visual review's findings: corrected image crops, varied page flow/transitions, differentiated chapter-title treatments, reworked Look 04/05/06 compositions, a merged editorial inquiry finale, and a real (not decorative) motion layer. **Stopping here for human + ChatGPT visual review.** No additional pages or launch work has been started.
 
-## What was built
+## What changed this pass
 
-Homepage only (`src/app/page.tsx`), composed of:
+**1. Image cropping — root cause and fix.** Every source photo is portrait or square; none are landscape. The prior implementation forced several into landscape-ish boxes (Look 06's hero into `16:9`, Look 03's fourth image into `21:9`), which is what cropped Isaiah's head out of frame. Fixed by measuring each image's true rendered aspect ratio via actual browser decoding (not file metadata, which can be misleading — see below) and choosing intentional crops from real ratios: Look 01/02 portraits now at `2:3`/`3:4` matching native, Look 03's images corrected from a wrongly-landscape `4:3`/`21:9` to portrait-safe `3:4`/`2:3`, and Look 06's hero now uses its true `~9:16` ratio instead of `16:9` — showing the full figure and environment, not a torso crop.
 
-- `SiteHeader` — persistent wordmark + "Inquire" link that scrolls to the form
-- `LookProgress` — fixed corner Look-number tracker (desktop only), IntersectionObserver-driven, respects `prefers-reduced-motion`
-- Six bespoke Look sections (`look-01-studio.tsx` through `look-06-away.tsx`), each with its own desktop composition and a distinct, deliberate mobile recomposition — not a shared template. Density varies 3/3/4/1/3/4 images per the approved plan.
-- `ClosingStatement` — portrait + one short line, no invented proof
-- `InquirySection` / `InquiryForm` — Name, Email, Reason for Contact, Message; client component using React 19 `useActionState` against a server action (`src/app/actions.ts`) with server-side validation
-- `SiteFooter` — location, real Instagram/TikTok links, copyright
+- Note on tooling: `sips`/`file` EXIF orientation reporting was inconsistent with what browsers actually render (confirmed via headless Chromium `naturalWidth`/`naturalHeight`, which is what Next.js Image and real visitors both see). Trust browser-decoded dimensions over file-metadata tools for this kind of check going forward.
 
-**Design system:** Fraunces (display) + Inter (body) via `next/font/google`; palette color-picked from the actual photography — warm charcoal/off-white base, denim blue primary accent, rust and olive supporting tones (`src/app/globals.css`). No black-and-white "luxury" treatment, no rounded-UI/card patterns anywhere in the implementation (verified by grep). No decorative or generic gradient styling — but functional gradient overlays are used where they earn their place: a dark scrim behind the Look 01 hero text and header, purely for image-legibility, not as a color/decoration choice.
+**2. Page flow.** Removed the uniform `border-b` divider between every section, which was the main source of the "gallery, hard stop, gallery" feeling. Introduced two genuine structural overlaps (Look 03 → 04, Look 05 → 06) via negative margins so a chapter visually begins before the previous one fully ends — kept intentionally small (`-24px` to `-40px`) after discovering a larger overlap caused normal scroll navigation to skip past Look 04's title content entirely.
 
-**Motion:** `motion` package installed. Only two moments: the Look-number tick and hard-cut section transitions (i.e., the absence of crossfade). No autoplay, no scroll-jacking, no decorative background motion. Reduced-motion verified with `reducedMotion: 'reduce'` context — zero console errors, transitions degrade correctly.
+**3. Chapter-title variation.** No longer one shared template: Look 02 keeps a small subtle label, Look 03 and Look 04 get an oversized, low-opacity numeral as a real design event, Look 05 pairs a small number with a large title in negative space, Look 06's title overlaps directly on the hero image with a legibility scrim.
 
-**Images:** all via `next/image` with `fill` + explicit `sizes`, so responsive variants are generated and full-size originals aren't delivered as-is to visitors — confirmed via production build. `priority` set on the three Look 01 images (hero + both portraits), since testing showed the portrait row can sit above the fold on shorter viewports (a real Next.js LCP warning caught this and was fixed).
+**4. Look 04 ("The Table") reworked** — larger image scale, offset/asymmetric positioning, the oversized "04" numeral integrated as tension rather than the image floating alone in empty space.
+
+**5. Look 05 ("Home Ground") reworked** — real hierarchy instead of three uniform images: one hero gets a deliberate paper-colored mat/print treatment at larger scale, the two supporting images are smaller and unframed with varied vertical offset.
+
+**6. Look 06 ("Away") fully reworked** — the hero now shows full environmental context (trees, brick square, full figure) instead of a cropped torso, paired with an airier, more asymmetric arrangement of the three supporting images.
+
+**7. Inquiry finale reworked** — `ClosingStatement` and the old `InquirySection` are merged into one `InquiryFinale` component: an editorial split with the portrait on one side, "Available For / Brand Partnerships / Modeling / Creative Projects / Based in Nashville / Available for select projects and travel" plus the form on the other. No longer a generic form bolted to the bottom.
+
+**8-9. Motion layer** — added via three new primitives in `src/components/motion/`:
+
+- `RevealImage` — entrance choreography (opacity + 28px translate, optional 1.03 scale-settle on hero/primary images), staggered per Look
+- `RevealTitle` — masked vertical reveal for chapter titles/numerals
+- `ParallaxImage` — subtle 5-6% scroll-linked movement, applied only to three images (Look 01 hero, Look 03 hero, Look 06 hero), not everywhere
+- `LookProgress` — the fixed corner tracker now slides vertically between numbers instead of a plain fade
+- No scroll-jacking, no autoplay, no floating decoration, no blanket fade-up
+
+**10. Header** increased from `text-sm`/14px to `text-lg`/`text-xl` with more padding — still restrained, no longer illegibly small.
+
+## A real bug found and fixed during verification (worth flagging directly)
+
+The `RevealTitle` masked-reveal pattern had a structural bug: the animated child was clipped by its own `overflow-hidden` parent _before_ the reveal fired, which meant `IntersectionObserver`-based `whileInView` could never detect it as visible — a chicken-and-egg deadlock where every chapter title/numeral was invisible regardless of scroll position. Caught this by testing with real Chromium scroll simulation rather than trusting static screenshots (an initial rapid-scroll screenshot test gave a false "empty page" reading before a proper continuous-scroll test isolated the real cause). Fixed with Motion's standard parent/child variants pattern; confirmed via direct DOM/transform inspection that every title reveals correctly after a full scroll-through, on both desktop and mobile.
+
+A second, related bug: `useReducedMotion()` can resolve synchronously on the client's first paint, differing from the server-rendered pass and throwing a real React hydration-mismatch console error. Fixed with a `useSyncExternalStore`-based hook (`use-safe-reduced-motion.ts`) that guarantees the server snapshot and first client render match exactly, and switched from `initial={undefined}` to explicit `animate` targets so reduced-motion users get content immediately rather than a permanently-stuck hidden state. Verified: zero console errors in both normal and `reducedMotion: 'reduce'` browser contexts, and reduced-motion users see all content without needing to scroll.
 
 ## Verification completed
 
-Run directly against this implementation, not just inspected:
+Run directly against the implementation, not just inspected:
 
 - `npm run typecheck` — pass
 - `npm run lint` — pass, no warnings
-- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass. **One real accessibility bug was caught and fixed**: the mobile horizontal swipe-image groups (Looks 02, 05, 06) were scrollable but not keyboard-focusable (`scrollable-region-focusable`, axe "serious" impact) — fixed with `tabIndex={0}` + `role="group"` + `aria-label` on each.
+- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass
 - `npm run build` — pass, static homepage
-- `npm run start` (production server, not just dev) — verified directly: HTTP 200, zero console errors, desktop and mobile, via a real headless-browser check
-- Visual inspection in a real browser at desktop (1440px) and mobile (iPhone 13) sizes — screenshots reviewed section by section, including close-up checks of Look 03 (the dense spread) and Look 04 (the minimal single-image moment)
-- Keyboard tab order checked — correctly skips hidden mobile-only elements on desktop, reaches all form fields in order
-- One real Next.js LCP performance warning was caught during verification and fixed (see above)
-- One test-run false alarm (10 failed image requests) was traced to a stale leftover dev-server process occupying port 3000 from earlier in the session, not an app bug — confirmed by killing it and getting a clean, reproducible pass
+- `npm run start` (production server) — HTTP 200, zero console errors, desktop and mobile, verified via real headless-browser checks
+- Reduced-motion explicitly tested via Playwright's `reducedMotion: 'reduce'` context — zero console errors, content visible without scroll
+- Full continuous-scroll simulation (desktop 1440px, laptop 1280px, mobile) confirmed every image and title reveals correctly, no stuck/invisible elements other than expected off-screen carousel items and hidden mobile/desktop variants
+- Every image crop reviewed against its true browser-decoded aspect ratio, not file metadata
+- Section overlaps (Look 03→04, Look 05→06) checked for visual collision — none found after reducing overlap magnitude
 
 No known open bugs.
 
 ## Stack
 
-Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm, Vercel hosting target. `motion` added as a new dependency for the two restrained animation moments described above. No CMS, no ecommerce, no auth.
+Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm, `motion` for animation, Vercel hosting target. No CMS, no ecommerce, no auth.
 
-## Decisions carried into implementation
+## Open decisions (unchanged from prior status)
 
-- Identity hierarchy block (Isaiah Ball / Fashion Creator / Model / Creative Collaborator / Nashville, Tennessee / available for select projects and travel) replaces the earlier prose-paragraph hero copy, per the human + ChatGPT refinement.
-- Per-Look captions were cut to just a number + title (no sentence-length captions) — photography carries the persuasion, per refinement 4.
-- Single continuous homepage scroll, no separate Inquiry page (still an open question — see below).
-- Inquiry form submissions are validated server-side and logged server-side; **real email delivery is not yet wired up** (no provider installed) — flagged clearly in code and here.
-
-## Open decisions
-
-- **Email delivery integration** (e.g. Resend) — the form works and validates correctly but doesn't deliver anywhere real yet. Needed before launch.
-- Which contact email the form should eventually deliver to.
-- Real Instagram follower/engagement numbers — still unverified; not used anywhere in the implementation.
-- Exact production domain — `layout.tsx` currently uses a placeholder (`isaiahball.com`) for `metadataBase` and OG tags; needs the real domain before launch.
-- Repo carries ~123MB of full-resolution images in git history (unchanged from the last status update) — still a launch-readiness item, not resolved.
-- Single-page vs. dedicated Inquiry page — this build assumes single-page; still open for confirmation.
+- Email delivery integration (e.g. Resend) — form validates and logs server-side only, doesn't deliver anywhere real yet
+- Which contact email the form should eventually deliver to
+- Real Instagram follower/engagement numbers — still unverified, not used anywhere
+- Exact production domain — `layout.tsx` still uses a placeholder (`isaiahball.com`)
+- Repo carries ~123MB of full-resolution images in git history — still a launch-readiness item
+- Single-page vs. dedicated Inquiry page — still assumes single-page
 
 ## Next recommended action
 
-**Human + ChatGPT visual review of the live homepage implementation.**
+**Human + ChatGPT visual review of the refined homepage.**
 
 Do not begin additional pages or launch-readiness work (domain, email delivery, redirects, analytics, final SEO pass) until that review is complete.

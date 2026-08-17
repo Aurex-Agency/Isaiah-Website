@@ -3,17 +3,17 @@
 export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="from-ink/70 pointer-events-none absolute inset-0 h-24 bg-gradient-to-b to-transparent" />
-      <div className="relative flex items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
+      <div className="from-ink/75 pointer-events-none absolute inset-0 h-28 bg-gradient-to-b to-transparent" />
+      <div className="relative flex items-center justify-between px-5 py-5 sm:px-8 sm:py-7">
         <a
           href="#look-01"
-          className="font-display text-paper text-sm tracking-wide"
+          className="font-display text-paper text-lg tracking-wide sm:text-xl"
         >
           Isaiah Ball
         </a>
         <a
           href="#inquire"
-          className="border-paper/40 text-paper hover:border-paper border-b font-sans text-sm transition-colors"
+          className="border-paper/50 text-paper hover:border-paper border-b font-sans text-base transition-colors sm:text-lg"
         >
           Inquire
         </a>

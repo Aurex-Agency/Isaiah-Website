@@ -1,20 +1,21 @@
 import Image from "next/image";
 import { LookNumber } from "./look-number";
+import { RevealImage } from "./motion/reveal-image";
 
 export function Look02AroundTown() {
   return (
     <section
       id="look-02"
       data-look-number="02"
-      className="border-line border-b py-16 sm:py-24"
+      className="pt-10 pb-16 sm:pt-14 sm:pb-24"
     >
       <div className="px-5 sm:px-8">
-        <LookNumber number="02" title="Around Town" className="mb-8 sm:mb-12" />
+        <LookNumber number="02" title="Around Town" className="mb-6 sm:mb-10" />
       </div>
 
       {/* Mobile: hero full-bleed, then a swipeable pair */}
       <div className="sm:hidden">
-        <div className="relative aspect-[4/5] w-full">
+        <RevealImage className="aspect-[3/4] w-full">
           <Image
             src="/images/looks/02-around-town/01-hero-quarry-front.jpg"
             alt="Isaiah Ball standing at a rocky quarry in Nashville, facing the camera"
@@ -22,7 +23,7 @@ export function Look02AroundTown() {
             sizes="100vw"
             className="object-cover"
           />
-        </div>
+        </RevealImage>
         <div
           className="snap-row bg-line mt-px flex gap-px overflow-x-auto"
           tabIndex={0}
@@ -52,7 +53,7 @@ export function Look02AroundTown() {
 
       {/* Desktop: asymmetric column break, large hero left, stacked pair right */}
       <div className="bg-line hidden gap-px sm:grid sm:grid-cols-[1.4fr_1fr]">
-        <div className="relative aspect-[4/5]">
+        <RevealImage className="aspect-[3/4]">
           <Image
             src="/images/looks/02-around-town/01-hero-quarry-front.jpg"
             alt="Isaiah Ball standing at a rocky quarry in Nashville, facing the camera"
@@ -60,9 +61,9 @@ export function Look02AroundTown() {
             sizes="60vw"
             className="object-cover"
           />
-        </div>
+        </RevealImage>
         <div className="flex flex-col gap-px">
-          <div className="relative aspect-[4/5] flex-1">
+          <RevealImage delay={0.1} className="aspect-[3/4] flex-1">
             <Image
               src="/images/looks/02-around-town/02-quarry-walking.jpg"
               alt="Isaiah Ball walking along the same quarry, side profile"
@@ -70,8 +71,8 @@ export function Look02AroundTown() {
               sizes="40vw"
               className="object-cover"
             />
-          </div>
-          <div className="relative aspect-[4/5] flex-1">
+          </RevealImage>
+          <RevealImage delay={0.2} className="aspect-[3/4] flex-1">
             <Image
               src="/images/looks/02-around-town/03-mural-wall.jpg"
               alt="Isaiah Ball seated in front of a colorful painted mural wall in Nashville"
@@ -79,7 +80,7 @@ export function Look02AroundTown() {
               sizes="40vw"
               className="object-cover"
             />
-          </div>
+          </RevealImage>
         </div>
       </div>
     </section>
