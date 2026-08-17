@@ -17,7 +17,7 @@ Homepage only (`src/app/page.tsx`), composed of:
 - `InquirySection` / `InquiryForm` — Name, Email, Reason for Contact, Message; client component using React 19 `useActionState` against a server action (`src/app/actions.ts`) with server-side validation
 - `SiteFooter` — location, real Instagram/TikTok links, copyright
 
-**Design system:** Fraunces (display) + Inter (body) via `next/font/google`; palette color-picked from the actual photography — warm charcoal/off-white base, denim blue primary accent, rust and olive supporting tones (`src/app/globals.css`). No black-and-white "luxury" treatment, no gradients, no rounded-UI/card patterns anywhere in the implementation (verified by grep).
+**Design system:** Fraunces (display) + Inter (body) via `next/font/google`; palette color-picked from the actual photography — warm charcoal/off-white base, denim blue primary accent, rust and olive supporting tones (`src/app/globals.css`). No black-and-white "luxury" treatment, no rounded-UI/card patterns anywhere in the implementation (verified by grep). No decorative or generic gradient styling — but functional gradient overlays are used where they earn their place: a dark scrim behind the Look 01 hero text and header, purely for image-legibility, not as a color/decoration choice.
 
 **Motion:** `motion` package installed. Only two moments: the Look-number tick and hard-cut section transitions (i.e., the absence of crossfade). No autoplay, no scroll-jacking, no decorative background motion. Reduced-motion verified with `reducedMotion: 'reduce'` context — zero console errors, transitions degrade correctly.
 

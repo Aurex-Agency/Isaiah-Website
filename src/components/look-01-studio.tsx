@@ -33,7 +33,9 @@ export function Look01Studio() {
             <li>Creative Collaborator</li>
           </ul>
           <p className="text-paper/60 mt-3 font-sans text-sm sm:text-base">
-            Nashville, Tennessee — available for select projects and travel
+            Nashville, Tennessee
+            <br />
+            Available for select projects and travel
           </p>
         </div>
       </div>
