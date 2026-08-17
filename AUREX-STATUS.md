@@ -4,7 +4,7 @@ Last updated: 2026-08-17
 
 ## Current phase
 
-Project setup, discovery, asset review, and creative direction are all complete. **Creative direction received final approval** through the completed human + ChatGPT review gate (Direction 1, "The Debut," approved with required refinements — see `CREATIVE-DIRECTION.md` §0). Next up: homepage page-design and copy planning, for review — not implementation. Do not begin page implementation until that planning has been reviewed and approved.
+Project setup, discovery, asset review, and creative direction are all complete and finally approved. Image assets have been imported into the repository. **Homepage page-design and copy planning are now complete and ready for review** (`HOMEPAGE-DESIGN.md`, `HOMEPAGE-COPY.md`, `IMAGE-ASSETS.md`). **Stopping here for human + ChatGPT review before any implementation begins.** Do not proceed to `/aurex-page-design` implementation, component code, or page-building until that review is complete.
 
 ## Stack
 
@@ -20,36 +20,33 @@ Run directly, not just inspected, from a clean `.next` state:
 - `npm run build` — pass
 - Aurex hooks (`format-changed-file.mjs`, `pre-push-quality.mjs`) — executed directly against this repo, confirmed working
 - CI workflow (`.github/workflows/aurex-quality.yml`) — includes Playwright browser install step; matches the locally-verified check sequence
-
-`/hooks` still needs to be run by the user in an interactive Claude Code session for hooks to load — this could not be triggered from here.
+- **`/hooks` — confirmed run successfully in an interactive Claude Code session.** Hooks are loaded and active for this project.
 
 ## Current branch
 
-`main`, tracking `origin/main`. Pushed commits:
-
-1. `3c04549` — Scaffold Next.js App Router site and Aurex project setup
-2. `03f7dbd` — Add discovery findings and approved creative direction _(direction approval noted here was premature — corrected by commit 5, then finalized by commit 6)_
-3. `3fb0c2f` — Record completed asset review
-4. `670752c` — Status update (superseded)
-5. `e522508` — Correct premature creative-direction approval (reverted to "recommended, not approved")
-6. `d7c0f51` — Record final creative-direction approval with required refinements, per completed human + ChatGPT review gate
+`main`, tracking `origin/main`. Pushed commits through `6d495ba` (see prior status entries for full list); this update and the image-asset/homepage-planning commits that follow it are pending push as of this writing.
 
 ## Decisions
 
 - **Stack:** settled. As above.
 - **Discovery:** settled. See `DISCOVERY.md`.
-- **Asset review:** settled. 20 usable photos (no video) reviewed directly from Isaiah's Drive folder, grouping into ~5-6 Look chapters.
-- **Creative direction:** **SETTLED — final approval.** Direction 1, "The Debut," approved as the core narrative system with 10 required refinements (numbered Look system as primary device, Direction 2's editorial visual principles merged in, varied per-Look composition rather than uniform sections, restrained/direct CTA copy, external positioning as fashion creator/model/creative collaborator rather than "nano-influencer," Nashville-as-base not ceiling, photo-derived palette, Direction 3 rejected for launch but preserved for future video, fashion-forward/restrained/youthful/slightly-raw tone, and unchanged commercial objective). Full detail in `CREATIVE-DIRECTION.md` §0.
+- **Asset review:** settled. 20 usable photos (no video) reviewed directly from Isaiah's Drive folder.
+- **Creative direction:** settled — final approval. Direction 1, "The Debut," approved with 10 required refinements. Full detail in `CREATIVE-DIRECTION.md` §0.
+- **Image import:** settled. 19 of 20 reviewed photos imported into `public/images/` at full original quality, organized by Look under sensible filenames. 1 held in reserve, not imported (redundant, not a quality reject — see `IMAGE-ASSETS.md`). Repo-size tradeoff (~123MB) flagged as a launch-readiness item, not resolved.
+- **Homepage planning:** settled, pending review. `HOMEPAGE-DESIGN.md` covers information hierarchy, section structure, each Look's role, image grouping, desktop and mobile composition strategy, typography hierarchy, photo-derived palette recommendation, motion/interaction intent, conversion path, CTA placement, inquiry-flow entry points, nav/header/footer concepts, SEO considerations, and open items. `HOMEPAGE-COPY.md` is the draft copy. No page/component code has been written.
 
 ## Open decisions
 
-- Real Instagram follower/engagement numbers — unverified by automation (Instagram blocks unauthenticated scraping); need a screenshot or direct figures from Isaiah before the stats/media-kit section can be built. Does not block page-design planning.
-- Where/how to import the reviewed photo assets into the project repo (currently only cached in this session's scratchpad, not committed)
-- Exact accent/palette colors to pull from the actual imagery — to be finalized during page-design planning, per `CREATIVE-DIRECTION.md` §0 refinement 7 (derived from real photos, not chosen abstractly)
-- No existing brand collabs or press — site credibility has to be carried entirely by portfolio presentation quality, not third-party proof
+- **Human + ChatGPT review of the homepage plan and copy** — blocking. Required before any implementation begins.
+- Real Instagram follower/engagement numbers — unverified by automation; not used anywhere in the current plan or copy, and doesn't block review.
+- Exact palette hex values — to be color-picked from the actual imported image files during implementation, per `HOMEPAGE-DESIGN.md` §8.
+- Font selection — typographic personality is specified (`HOMEPAGE-DESIGN.md` §7); exact typefaces not yet chosen.
+- Single continuous homepage vs. a dedicated separate Inquiry page — assumed single-page for this plan; needs confirmation (`HOMEPAGE-DESIGN.md` §16).
+- Which contact email the new inquiry form should deliver to (currently only a personal Gmail exists, from the TikTok bio).
+- No existing brand collabs or press — site credibility has to be carried entirely by portfolio presentation quality, not third-party proof.
 
 ## Next recommended action
 
-**Homepage page-design and copy planning, for review.**
+**Human + ChatGPT review of `HOMEPAGE-DESIGN.md`, `HOMEPAGE-COPY.md`, and `IMAGE-ASSETS.md`.**
 
-Scope: produce a homepage page-design plan and copy draft reflecting the approved direction (`CREATIVE-DIRECTION.md` §0) — varied per-Look composition, editorial typography and asymmetric layout principles, restrained/direct conversion copy, fashion-creator/model/collaborator positioning, Nashville-plus-range framing, and a palette derived from the reviewed photo set. This is planning output for review, not implementation — **do not proceed to actual page/component implementation until this planning is reviewed and approved.**
+Do not proceed to `/aurex-page-design` implementation, `/aurex-copy` finalization, or any component/page code until that review is complete and the plan is approved.
