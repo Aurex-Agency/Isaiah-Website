@@ -2,34 +2,55 @@
 
 Last updated: 2026-08-17
 
+## Current phase
+
+Project setup complete and pushed to GitHub. Discovery, creative-direction approval, and asset review have also already happened in this workstream (see below) — status is reported accurately rather than reset, since the work is real and committed.
+
+## Stack
+
+Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm (`package-lock.json` committed), Vercel hosting target. No CMS, no ecommerce, no auth. See `CLAUDE.md` for full detail and `/aurex-stack` reasoning in conversation history.
+
+## Verification completed
+
+Run directly, not just inspected, from a clean `.next` state:
+
+- `npm run typecheck` (`next typegen && tsc --noEmit`) — pass
+- `npm run lint` — pass, no warnings
+- `npm run test` (Playwright: smoke + `@axe-core` WCAG 2.2 AA scan, desktop + mobile) — 4/4 pass
+- `npm run build` — pass
+- Aurex hooks (`format-changed-file.mjs`, `pre-push-quality.mjs`) — executed directly against this repo, confirmed working
+- CI workflow (`.github/workflows/aurex-quality.yml`) — includes Playwright browser install step; matches the locally-verified check sequence
+
+`/hooks` still needs to be run by the user in an interactive Claude Code session for hooks to load — this could not be triggered from here.
+
+## Current branch
+
+`main`, tracking `origin/main`. Pushed commits:
+
+1. `3c04549` — Scaffold Next.js App Router site and Aurex project setup
+2. `03f7dbd` — Add discovery findings and approved creative direction
+3. `3fb0c2f` — Record completed asset review
+
 ## Approved decisions
 
-- **Stack:** Next.js 16 (App Router) + TypeScript + Tailwind v4 + React 19, npm, Vercel hosting. See `/aurex-stack` output in conversation history and `CLAUDE.md`.
-- **Discovery:** Complete — see `DISCOVERY.md`.
-- **Creative direction:** Approved — Direction 1, "The Debut" (numbered chapter/"Look 01, 02..." system). See `CREATIVE-DIRECTION.md`.
+- **Stack:** as above.
+- **Discovery:** complete — see `DISCOVERY.md`.
+- **Creative direction:** approved — Direction 1, "The Debut" (numbered "Look 01, 02..." chapter system). See `CREATIVE-DIRECTION.md`.
+- **Asset review:** complete — 20 usable photos (no video) reviewed directly from Isaiah's Drive folder, confirmed sufficient for Direction 1, grouping into ~5-6 Look chapters. See `DISCOVERY.md` §9.
 
-## Project setup status
+## Open decisions
 
-Scaffold, quality tooling (typecheck/lint/test/build), Playwright smoke + a11y tests, Aurex hooks, and CI are installed and verified working. Initial commit made (not pushed).
+- Real Instagram follower/engagement numbers — unverified by automation (Instagram blocks unauthenticated scraping); need a screenshot or direct figures from Isaiah before the stats/media-kit section can be built
+- Where/how to import the reviewed photo assets into the project repo (currently only cached in this session's scratchpad, not committed)
+- One accent color to pull from the actual imagery once page design begins (not to be chosen abstractly)
+- No existing brand collabs or press — site credibility has to be carried entirely by portfolio presentation quality, not third-party proof
 
-## Asset review — complete (2026-08-17)
+## Next recommended action
 
-Reviewed all 20 photos from Isaiah's Drive folder directly (downloaded and viewed each one, not inferred from filenames). Findings:
+Discovery, creative direction, and asset review are already complete for this project — there is no pending discovery work to start. The next real steps in sequence are:
 
-- 20 usable photos, no video — Direction 3 ("The Reel") is off the table for launch; Direction 1 ("The Debut") is well-supported
-- Groups naturally into ~5-6 "Look" chapters: studio/branded-merch shoot (highest production value, Nikon Z5 + Lightroom), quarry + mural street style, venue/event styling (ties to local-business targeting), cabin/rustic, Boston + NYC travel content, and a black-and-white portrait (good "about" candidate)
-- CLIENT-CONFIRMED: all photos are Isaiah's to use freely, no outside photographer credit needed
-- Still open: pull one accent color from the actual imagery once page design begins (not chosen abstractly)
-- Local originals cached in this session's scratchpad (not copied into the repo yet — pending a decision on where/how to import them for implementation)
+1. Get real Instagram stats directly from Isaiah (blocks the stats/media-kit section)
+2. `/aurex-page-design` and `/aurex-copy` for the homepage and inquiry flow, using the approved "Look" chapter structure and reviewed asset set
+3. Build the structured collab/booking inquiry form (Discovery's top-ranked opportunity) to replace the current bare-email-in-bio pattern
 
-## Still open (from DISCOVERY.md)
-
-- Real Instagram follower/engagement numbers — unverified by automation, need a screenshot/direct figures from Isaiah before building the stats/media-kit section
-- No existing brand collabs/press — proof has to come from portfolio quality alone, not social proof
-- CORRECTION to earlier local-only framing: Isaiah has real travel content (Boston, NYC) beyond Nashville, not a purely hyperlocal presence
-
-## Next steps, in order
-
-1. Get real Instagram stats directly from Isaiah
-2. `/aurex-page-design` and `/aurex-copy` for the homepage + inquiry flow (assets are ready; user held off proceeding as of 2026-08-17, reason not yet given)
-3. Build the structured collab/booking inquiry form (Discovery's top-ranked opportunity) — replaces the current bare-email-in-bio pattern
+If "next recommended action: discovery" was intended to mean re-opening or expanding discovery rather than reflecting a fresh project, flag that back — current discovery is scoped to the initial site build and hasn't identified anything requiring rework.
