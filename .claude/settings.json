@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.aurex/hooks/format-changed-file.mjs\"",
+            "timeout": 30,
+            "statusMessage": "Formatting edited source file"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.aurex/hooks/pre-push-quality.mjs\"",
+            "timeout": 600,
+            "statusMessage": "Running Aurex quality gate"
+          }
+        ]
+      }
+    ]
+  }
+}
