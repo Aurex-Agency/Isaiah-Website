@@ -4,7 +4,7 @@ Last updated: 2026-08-17
 
 ## Current phase
 
-Project setup complete and pushed to GitHub. Discovery, creative-direction approval, and asset review have also already happened in this workstream (see below) — status is reported accurately rather than reset, since the work is real and committed.
+Project setup complete and pushed to GitHub. Discovery and asset review are also complete. **Creative direction is not yet approved** — it was marked approved in an earlier working session before the intended human + ChatGPT creative-direction review gate had taken place. That has been corrected: Direction 1, "The Debut," is the current working recommendation only. Page design and copy are blocked until the joint review happens.
 
 ## Stack
 
@@ -28,29 +28,27 @@ Run directly, not just inspected, from a clean `.next` state:
 `main`, tracking `origin/main`. Pushed commits:
 
 1. `3c04549` — Scaffold Next.js App Router site and Aurex project setup
-2. `03f7dbd` — Add discovery findings and approved creative direction
+2. `03f7dbd` — Add discovery findings and approved creative direction _(direction approval noted here was premature — see Current phase)_
 3. `3fb0c2f` — Record completed asset review
+4. `670752c` — Status update (superseded by this correction)
 
-## Approved decisions
+## Decisions
 
-- **Stack:** as above.
-- **Discovery:** complete — see `DISCOVERY.md`.
-- **Creative direction:** approved — Direction 1, "The Debut" (numbered "Look 01, 02..." chapter system). See `CREATIVE-DIRECTION.md`.
-- **Asset review:** complete — 20 usable photos (no video) reviewed directly from Isaiah's Drive folder, confirmed sufficient for Direction 1, grouping into ~5-6 Look chapters. See `DISCOVERY.md` §9.
+- **Stack:** as above. Settled.
+- **Discovery:** complete — see `DISCOVERY.md`. Settled.
+- **Asset review:** complete — 20 usable photos (no video) reviewed directly from Isaiah's Drive folder, grouping into ~5-6 Look chapters. Settled; informs the creative-direction review but doesn't decide it.
+- **Creative direction:** NOT settled. Three directions are documented in `CREATIVE-DIRECTION.md` ("The Debut," "The Lookbook," "The Reel"). Direction 1 is the working recommendation. Final choice is pending the human + ChatGPT review below.
 
 ## Open decisions
 
+- **Creative direction approval** — blocking. Requires human + ChatGPT joint review of all three directions in `CREATIVE-DIRECTION.md` before any page design or copy work starts.
 - Real Instagram follower/engagement numbers — unverified by automation (Instagram blocks unauthenticated scraping); need a screenshot or direct figures from Isaiah before the stats/media-kit section can be built
 - Where/how to import the reviewed photo assets into the project repo (currently only cached in this session's scratchpad, not committed)
-- One accent color to pull from the actual imagery once page design begins (not to be chosen abstractly)
+- One accent color to pull from the actual imagery, once a direction is approved and page design begins
 - No existing brand collabs or press — site credibility has to be carried entirely by portfolio presentation quality, not third-party proof
 
 ## Next recommended action
 
-Discovery, creative direction, and asset review are already complete for this project — there is no pending discovery work to start. The next real steps in sequence are:
+**Human + ChatGPT creative-direction review of all three directions in `CREATIVE-DIRECTION.md`, before page design.**
 
-1. Get real Instagram stats directly from Isaiah (blocks the stats/media-kit section)
-2. `/aurex-page-design` and `/aurex-copy` for the homepage and inquiry flow, using the approved "Look" chapter structure and reviewed asset set
-3. Build the structured collab/booking inquiry form (Discovery's top-ranked opportunity) to replace the current bare-email-in-bio pattern
-
-If "next recommended action: discovery" was intended to mean re-opening or expanding discovery rather than reflecting a fresh project, flag that back — current discovery is scoped to the initial site build and hasn't identified anything requiring rework.
+Do not proceed to `/aurex-page-design` or `/aurex-copy` until that review is complete and a direction is formally approved. Getting real Instagram stats from Isaiah can happen in parallel — it doesn't depend on the creative-direction outcome.

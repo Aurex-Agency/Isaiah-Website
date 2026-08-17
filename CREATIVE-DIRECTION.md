@@ -1,7 +1,7 @@
 # Creative Direction — Isaiah Ball Personal Brand Website
 
 Last updated: 2026-08-17
-Status: **Approved — Direction 1, "The Debut."** Asset review complete (`DISCOVERY.md` §9): 20 usable photos, no video, clearing the minimum-asset threshold with room to spare. No remaining blocker for page implementation on the imagery side; real Instagram stats are still needed before the media-kit/stats section is built.
+Status: **Recommended, not yet approved — Direction 1, "The Debut."** This direction was marked approved in an earlier working session before the intended human + ChatGPT creative-direction review gate had taken place. That was premature: all three directions remain open until that joint review happens. Asset review is complete (`DISCOVERY.md` §9): 20 usable photos, no video, clearing Direction 1's minimum-asset threshold with room to spare — but this is asset readiness, not direction approval. Do not proceed to `/aurex-page-design` or `/aurex-copy` until the human + ChatGPT review of all three directions is complete.
 
 ## 1. Creative opportunity summary
 
@@ -143,7 +143,7 @@ Blocking for any direction: the actual asset review from `DISCOVERY.md` §9 has 
 
 ## 7. Decision required from human creative lead
 
-Two decisions needed before implementation begins:
+**Blocking:** a joint human + ChatGPT review of all three directions, per the intended Aurex creative-direction review gate. Direction 1 is the working recommendation, not a final decision — Direction 2 and Direction 3 remain live options until that review happens.
 
-1. **Direction approval** — confirm Direction 1 ("The Debut"), or select Direction 2 or 3, or request a blended approach.
-2. **Asset review timing** — decide whether to review Isaiah's actual photo/video bank before finalizing the direction choice (recommended, since Direction 3's viability and Direction 1's minimum-asset threshold both depend on it), or approve a direction now and adjust if the assets don't support it.
+1. **Direction approval** — confirm Direction 1 ("The Debut"), or select Direction 2 or 3, or request a blended approach. This decision belongs to the human + ChatGPT review, not to this document alone.
+2. **Asset review timing** — now resolved: Isaiah's actual photo bank has been reviewed (`DISCOVERY.md` §9, 20 usable photos, no video). That review informs but does not substitute for the direction-approval decision above.
