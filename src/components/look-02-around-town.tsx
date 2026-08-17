@@ -10,7 +10,12 @@ export function Look02AroundTown() {
       className="pt-10 pb-16 sm:pt-14 sm:pb-24"
     >
       <div className="px-5 sm:px-8">
-        <LookNumber number="02" title="Around Town" className="mb-6 sm:mb-10" />
+        <LookNumber
+          number="02"
+          title="Around Town"
+          tag="Lifestyle Content"
+          className="mb-6 sm:mb-10"
+        />
       </div>
 
       {/* Mobile: hero full-bleed, then a swipeable pair */}

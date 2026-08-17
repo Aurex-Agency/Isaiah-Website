@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { EditorialLink } from "./editorial-link";
 import { ParallaxImage } from "./motion/parallax-image";
 import { RevealImage } from "./motion/reveal-image";
 
 export function Look01Studio() {
   return (
     <section id="look-01" data-look-number="01" className="relative">
-      <div className="relative h-[92vh] min-h-[560px] w-full">
+      <div className="relative h-[92vh] min-h-[620px] w-full">
         <ParallaxImage strength={5} className="h-full w-full">
           <Image
             src="/images/looks/01-studio/01-hero-wide-establishing.jpg"
@@ -16,8 +17,11 @@ export function Look01Studio() {
             className="object-cover object-[center_30%]"
           />
         </ParallaxImage>
-        <div className="from-ink/80 via-ink/10 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent" />
+        <div className="from-ink/85 via-ink/15 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent" />
         <div className="absolute inset-x-5 bottom-10 sm:inset-x-8 sm:bottom-14 lg:max-w-xl">
+          <p className="text-denim-light mb-3 font-sans text-xs tracking-[0.2em] uppercase sm:text-sm">
+            Campaign Ready
+          </p>
           <h1 className="font-display text-paper text-5xl leading-[0.95] sm:text-7xl">
             Isaiah Ball
           </h1>
@@ -30,13 +34,21 @@ export function Look01Studio() {
             <li aria-hidden="true" className="text-paper/40">
               /
             </li>
-            <li>Creative Collaborator</li>
+            <li>Creative Partner</li>
           </ul>
           <p className="text-paper/60 mt-3 font-sans text-sm sm:text-base">
-            Nashville, Tennessee
+            Nashville based
             <br />
-            Available for select projects and travel
+            Available for campaigns, collaborations and travel
           </p>
+          <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+            <EditorialLink href="#inquire" variant="primary">
+              Work With Isaiah
+            </EditorialLink>
+            <EditorialLink href="#social" variant="secondary">
+              View Socials
+            </EditorialLink>
+          </div>
         </div>
       </div>
 

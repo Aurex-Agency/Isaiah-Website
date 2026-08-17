@@ -19,7 +19,7 @@ export function InquiryForm() {
   if (state.status === "success") {
     return (
       <p className="font-display text-paper text-2xl" role="status">
-        Thanks — your inquiry is in. Isaiah will be in touch soon.
+        Thanks. Your inquiry is in. Isaiah will be in touch soon.
       </p>
     );
   }

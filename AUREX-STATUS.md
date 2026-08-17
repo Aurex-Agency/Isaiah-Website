@@ -4,41 +4,43 @@ Last updated: 2026-08-17
 
 ## Current phase
 
-**Homepage art-direction and motion refinement pass is complete and verified.** Addresses the first visual review's findings: corrected image crops, varied page flow/transitions, differentiated chapter-title treatments, reworked Look 04/05/06 compositions, a merged editorial inquiry finale, and a real (not decorative) motion layer. **Stopping here for human + ChatGPT visual review.** No additional pages or launch work has been started.
+**Conversion, information-hierarchy, and negative-space pass is complete and verified.** Evolves the homepage from a pure editorial photo portfolio into a high-converting personal-brand site that still reads as premium fashion editorial. Every major section now has an explicit business purpose alongside the photography. **Stopping here for human + ChatGPT visual review.** No additional pages or launch work has been started. The approved visual identity (palette, type system, Look numbering, restraint) was not redesigned — extended.
 
 ## What changed this pass
 
-**1. Image cropping — root cause and fix.** Every source photo is portrait or square; none are landscape. The prior implementation forced several into landscape-ish boxes (Look 06's hero into `16:9`, Look 03's fourth image into `21:9`), which is what cropped Isaiah's head out of frame. Fixed by measuring each image's true rendered aspect ratio via actual browser decoding (not file metadata, which can be misleading — see below) and choosing intentional crops from real ratios: Look 01/02 portraits now at `2:3`/`3:4` matching native, Look 03's images corrected from a wrongly-landscape `4:3`/`21:9` to portrait-safe `3:4`/`2:3`, and Look 06's hero now uses its true `~9:16` ratio instead of `16:9` — showing the full figure and environment, not a torso crop.
+**1. Hero conversion message strengthened.** Identity block updated to "Isaiah Ball / Fashion Creator / Model / Creative Partner / Nashville based / Available for campaigns, collaborations and travel," with a small "Campaign Ready" label above it. Added a primary CTA ("Work With Isaiah" → scrolls to the inquiry form) and secondary CTA ("View Socials" → scrolls to the new Social Presence section), styled as editorial text links with an underline-draw and arrow-translate hover, not buttons. New shared `EditorialLink` component reused for every CTA on the site.
 
-- Note on tooling: `sips`/`file` EXIF orientation reporting was inconsistent with what browsers actually render (confirmed via headless Chromium `naturalWidth`/`naturalHeight`, which is what Next.js Image and real visitors both see). Trust browser-decoded dimensions over file-metadata tools for this kind of check going forward.
+**2. Social Presence section added** (`social-presence.tsx`, new, anchored at `#social`). Real handles only, Instagram @_.isaiahball and TikTok @_isaiahball, both linking out. Qualitative positioning copy ("Fashion, lifestyle and personality-led content across short-form social platforms... Nashville based. Growing audience. Available for brand partnerships and UGC."). **No follower counts, engagement rates, or other metrics are displayed** — none exist yet, verified. Architected so a stats row can be added later without restructuring (see Open Decisions).
 
-**2. Page flow.** Removed the uniform `border-b` divider between every section, which was the main source of the "gallery, hard stop, gallery" feeling. Introduced two genuine structural overlaps (Look 03 → 04, Look 05 → 06) via negative margins so a chapter visually begins before the previous one fully ends — kept intentionally small (`-24px` to `-40px`) after discovering a larger overlap caused normal scroll navigation to skip past Look 04's title content entirely.
+**3. "What Isaiah Creates" commercial section added** (`what-isaiah-creates.tsx`, new). Four numbered capabilities (Brand Content, Modeling, UGC, Creative Collaborations) in large editorial typography with alternating indent and divider lines — not cards, not icons.
 
-**3. Chapter-title variation.** No longer one shared template: Look 02 keeps a small subtle label, Look 03 and Look 04 get an oversized, low-opacity numeral as a real design event, Look 05 pairs a small number with a large title in negative space, Look 06's title overlaps directly on the hero image with a legibility scrim.
+**4. Every Look now carries a commercial label**, varied in execution rather than templated: Look 02 "Lifestyle Content" (small subtitle), Look 03 "Editorial + Events" (caption line beneath an oversized numeral), Look 04 "Hospitality + Experiences" (integrated into the reworked negative-space copy block), Look 05 "Style With Range" (subtitle in the header block), Look 06 "Available To Travel" (full positioning statement, see #7).
 
-**4. Look 04 ("The Table") reworked** — larger image scale, offset/asymmetric positioning, the oversized "04" numeral integrated as tension rather than the image floating alone in empty space.
+**5. Negative space given purpose.** Look 04's previously-empty left column now holds the "Hospitality + Experiences" positioning copy. Look 05's header area now carries the "Style With Range" line instead of empty space above the triptych. Look 06 gained a full positioning block beneath the hero image. None of this was solved by simply enlarging images, per the brief's explicit guardrail.
 
-**5. Look 05 ("Home Ground") reworked** — real hierarchy instead of three uniform images: one hero gets a deliberate paper-colored mat/print treatment at larger scale, the two supporting images are smaller and unframed with varied vertical offset.
+**6. Two mid-page conversion moments added** (`mid-page-cta.tsx`, new, reused twice): "Planning a campaign? Work With Isaiah →" after Look 03 (right after the strongest editorial work), and "Interested in a partnership? Start a Collaboration →" after Look 06 (right before the finale). Not spammed after every section.
 
-**6. Look 06 ("Away") fully reworked** — the hero now shows full environmental context (trees, brick square, full figure) instead of a cropped torso, paired with an airier, more asymmetric arrangement of the three supporting images.
+**7. Look 06 positioning strengthened**: "Nashville based. Available beyond." plus "Available for select campaigns, shoots, events and travel opportunities," placed beneath the hero image with its own subtle counter-motion (see below).
 
-**7. Inquiry finale reworked** — `ClosingStatement` and the old `InquirySection` are merged into one `InquiryFinale` component: an editorial split with the portrait on one side, "Available For / Brand Partnerships / Modeling / Creative Projects / Based in Nashville / Available for select projects and travel" plus the form on the other. No longer a generic form bolted to the bottom.
+**8. Inquiry finale strengthened** with a "Let's Make Something." headline above the existing "Available For" list and form. Added `scroll-mt` to both the finale and the Social Presence section so the fixed header doesn't clip content when jumped to via anchor link — a real bug caught during verification (see below).
 
-**8-9. Motion layer** — added via three new primitives in `src/components/motion/`:
+**9. Motion layer extended**, still restrained:
 
-- `RevealImage` — entrance choreography (opacity + 28px translate, optional 1.03 scale-settle on hero/primary images), staggered per Look
-- `RevealTitle` — masked vertical reveal for chapter titles/numerals
-- `ParallaxImage` — subtle 5-6% scroll-linked movement, applied only to three images (Look 01 hero, Look 03 hero, Look 06 hero), not everywhere
-- `LookProgress` — the fixed corner tracker now slides vertically between numbers instead of a plain fade
-- No scroll-jacking, no autoplay, no floating decoration, no blanket fade-up
+- `ParallaxText` (new) — scroll-linked movement (~48-56px) on the Look 03 and Look 04 oversized numerals
+- `RevealImage` gained a `direction` prop — two Look 06 supporting images now enter from the side (edge reveal) instead of from below
+- Counter-motion: Look 06's positioning text moves opposite the hero image's parallax via a negative `ParallaxText` range
+- `EditorialLink` carries the CTA micro-interaction (underline draw, arrow translate) used everywhere
+- No scroll-jacking, no long entrances, not every element animated
 
-**10. Header** increased from `text-sm`/14px to `text-lg`/`text-xl` with more padding — still restrained, no longer illegibly small.
+**10. Social metrics architecture** — deliberately not built into a visual placeholder. See Open Decisions for exactly what's needed from Isaiah before a stats row can be added.
 
-## A real bug found and fixed during verification (worth flagging directly)
+**11. Content density/rhythm** — page now reads identity → visual proof → capability → visual proof → mid-CTA → social presence → visual proof ×3 (each carrying its own commercial label) → mid-CTA → conversion, instead of photo-photo-photo-photo-form. Photography remains dominant; new text sections are short and purpose-built, not long-form marketing copy.
 
-The `RevealTitle` masked-reveal pattern had a structural bug: the animated child was clipped by its own `overflow-hidden` parent _before_ the reveal fired, which meant `IntersectionObserver`-based `whileInView` could never detect it as visible — a chicken-and-egg deadlock where every chapter title/numeral was invisible regardless of scroll position. Caught this by testing with real Chromium scroll simulation rather than trusting static screenshots (an initial rapid-scroll screenshot test gave a false "empty page" reading before a proper continuous-scroll test isolated the real cause). Fixed with Motion's standard parent/child variants pattern; confirmed via direct DOM/transform inspection that every title reveals correctly after a full scroll-through, on both desktop and mobile.
+## A real bug found and fixed during verification
 
-A second, related bug: `useReducedMotion()` can resolve synchronously on the client's first paint, differing from the server-rendered pass and throwing a real React hydration-mismatch console error. Fixed with a `useSyncExternalStore`-based hook (`use-safe-reduced-motion.ts`) that guarantees the server snapshot and first client render match exactly, and switched from `initial={undefined}` to explicit `animate` targets so reduced-motion users get content immediately rather than a permanently-stuck hidden state. Verified: zero console errors in both normal and `reducedMotion: 'reduce'` browser contexts, and reduced-motion users see all content without needing to scroll.
+A WCAG AA contrast failure: `text-paper/40`, used for every new small uppercase label (chapter commercial tags, section eyebrows), resolves to `#736f6a` on the `#1c1815` background — a 3.53:1 contrast ratio against the required 4.5:1 for normal-size text. Calculated the actual blend mathematically, confirmed against axe's own reported color, and found the real threshold (~48% opacity) before applying a fix with real margin: every affected label bumped from `/40` to `/55`. Re-verified with Playwright + axe — 4/4 tests pass, zero violations. Placeholder text and disabled form states were left alone since axe correctly exempts them.
+
+Also fixed during this pass: an em dash appeared in newly-written copy ("Style With Range — comfortable...") before being caught and corrected — the constitution's no-dash rule for website copy was re-checked across all new and existing components; the only remaining em/en dashes in the codebase are in code comments, not visible copy.
 
 ## Verification completed
 
@@ -46,13 +48,13 @@ Run directly against the implementation, not just inspected:
 
 - `npm run typecheck` — pass
 - `npm run lint` — pass, no warnings
-- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass
+- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass (one real contrast failure caught and fixed, see above)
 - `npm run build` — pass, static homepage
-- `npm run start` (production server) — HTTP 200, zero console errors, desktop and mobile, verified via real headless-browser checks
-- Reduced-motion explicitly tested via Playwright's `reducedMotion: 'reduce'` context — zero console errors, content visible without scroll
-- Full continuous-scroll simulation (desktop 1440px, laptop 1280px, mobile) confirmed every image and title reveals correctly, no stuck/invisible elements other than expected off-screen carousel items and hidden mobile/desktop variants
-- Every image crop reviewed against its true browser-decoded aspect ratio, not file metadata
-- Section overlaps (Look 03→04, Look 05→06) checked for visual collision — none found after reducing overlap magnitude
+- `npm run start` (production server) — HTTP 200, zero console errors across normal, `reducedMotion: 'reduce'`, and mobile contexts
+- Full continuous-scroll simulation on desktop (1440px) and mobile confirmed every new section renders, all reveals trigger, no stuck elements
+- Anchor-link navigation tested directly (`#inquire`, `#social`) — confirmed correct scroll position with the fixed header no longer clipping content
+- Social links verified to point to the real, verified handles (Instagram @_.isaiahball, TikTok @_isaiahball) consistently across the footer, Social Presence section, and Person JSON-LD schema
+- Grepped for any follower/engagement/statistic-shaped text — none found; only the code comment noting metrics are intentionally omitted
 
 No known open bugs.
 
@@ -60,17 +62,28 @@ No known open bugs.
 
 Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm, `motion` for animation, Vercel hosting target. No CMS, no ecommerce, no auth.
 
-## Open decisions (unchanged from prior status)
+## Open decisions
+
+**New — information needed from Isaiah before the Social Presence section can carry real metrics:**
+
+- Instagram follower count
+- TikTok follower count
+- Engagement rate, if available
+- Monthly or recent view counts, if available
+- Audience demographics, if he can provide them
+
+None of the above are displayed anywhere on the live site. Do not add placeholder numbers when this information arrives — wire them into `social-presence.tsx`'s `PLATFORMS` data directly.
+
+**Carried over from prior status:**
 
 - Email delivery integration (e.g. Resend) — form validates and logs server-side only, doesn't deliver anywhere real yet
 - Which contact email the form should eventually deliver to
-- Real Instagram follower/engagement numbers — still unverified, not used anywhere
 - Exact production domain — `layout.tsx` still uses a placeholder (`isaiahball.com`)
 - Repo carries ~123MB of full-resolution images in git history — still a launch-readiness item
 - Single-page vs. dedicated Inquiry page — still assumes single-page
 
 ## Next recommended action
 
-**Human + ChatGPT visual review of the refined homepage.**
+**Human + ChatGPT visual review of the conversion-focused homepage.**
 
 Do not begin additional pages or launch-readiness work (domain, email delivery, redirects, analytics, final SEO pass) until that review is complete.

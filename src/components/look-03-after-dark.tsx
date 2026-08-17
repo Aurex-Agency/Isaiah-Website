@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ParallaxImage } from "./motion/parallax-image";
+import { ParallaxText } from "./motion/parallax-text";
 import { RevealImage } from "./motion/reveal-image";
 import { RevealTitle } from "./motion/reveal-title";
 
@@ -10,10 +11,12 @@ export function Look03AfterDark() {
       data-look-number="03"
       className="bg-ink py-16 sm:py-24"
     >
-      <div className="mb-8 flex items-end gap-4 px-5 sm:mb-14 sm:px-8">
-        <RevealTitle className="font-display text-paper/25 text-[5.5rem] leading-none sm:text-[9rem]">
-          03
-        </RevealTitle>
+      <div className="mb-2 flex items-end gap-4 px-5 sm:px-8">
+        <ParallaxText range={56}>
+          <RevealTitle className="font-display text-paper/25 text-[5.5rem] leading-none sm:text-[9rem]">
+            03
+          </RevealTitle>
+        </ParallaxText>
         <RevealTitle
           delay={0.1}
           className="font-display text-paper pb-2 text-2xl sm:pb-5 sm:text-4xl"
@@ -21,6 +24,9 @@ export function Look03AfterDark() {
           After Dark
         </RevealTitle>
       </div>
+      <p className="text-paper/55 mb-8 px-5 font-sans text-xs tracking-[0.15em] uppercase sm:mb-14 sm:px-8 sm:text-sm">
+        Editorial + Events
+      </p>
 
       {/* Mobile: varied-height vertical sequence, not four uniform crops */}
       <div className="bg-line flex flex-col gap-px sm:hidden">

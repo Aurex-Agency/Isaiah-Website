@@ -7,7 +7,7 @@ const AVAILABLE_FOR = ["Brand Partnerships", "Modeling", "Creative Projects"];
 
 export function InquiryFinale() {
   return (
-    <section id="inquire" className="bg-ink">
+    <section id="inquire" className="bg-ink scroll-mt-20 sm:scroll-mt-24">
       <div className="grid sm:grid-cols-2">
         <RevealImage className="relative aspect-[4/5] sm:aspect-auto">
           <Image
@@ -20,7 +20,10 @@ export function InquiryFinale() {
         </RevealImage>
 
         <div className="flex flex-col justify-center px-5 py-16 sm:px-12 sm:py-20">
-          <p className="text-paper/50 font-sans text-sm tracking-[0.2em] uppercase">
+          <RevealTitle className="font-display text-paper text-4xl leading-none sm:text-6xl">
+            Let&apos;s Make Something.
+          </RevealTitle>
+          <p className="text-paper/50 mt-8 font-sans text-sm tracking-[0.2em] uppercase">
             Available For
           </p>
           <ul className="font-display text-paper mt-4 text-3xl leading-tight sm:text-5xl">

@@ -16,6 +16,12 @@ export function Look05HomeGround() {
         <RevealTitle className="font-display text-paper text-3xl sm:text-5xl">
           Home Ground
         </RevealTitle>
+        <p className="text-paper/55 mt-4 font-sans text-xs tracking-[0.15em] uppercase sm:text-sm">
+          Style With Range
+        </p>
+        <p className="text-paper/60 mt-3 max-w-md font-sans sm:text-lg">
+          Comfortable across a range of aesthetics, from editorial to everyday.
+        </p>
       </div>
 
       {/* Mobile: horizontal swipe carousel, hero receives the mat treatment */}

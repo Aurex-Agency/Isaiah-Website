@@ -17,13 +17,13 @@ const siteUrl = "https://isaiahball.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Isaiah Ball — Fashion Creator & Model, Nashville, TN",
+  title: "Isaiah Ball: Fashion Creator & Model, Nashville TN",
   description:
-    "Isaiah Ball is a fashion creator, model, and creative collaborator based in Nashville, Tennessee, available for select brand partnerships, modeling bookings, and local projects.",
+    "Isaiah Ball is a Nashville based fashion creator, model, and creative partner, available for brand partnerships, modeling, and creative collaborations.",
   openGraph: {
-    title: "Isaiah Ball — Fashion Creator & Model, Nashville, TN",
+    title: "Isaiah Ball: Fashion Creator & Model, Nashville TN",
     description:
-      "Fashion creator, model, and creative collaborator based in Nashville, Tennessee.",
+      "Nashville based fashion creator, model, and creative partner.",
     url: siteUrl,
     siteName: "Isaiah Ball",
     images: [
@@ -42,7 +42,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Isaiah Ball",
-  jobTitle: ["Fashion Creator", "Model", "Creative Collaborator"],
+  jobTitle: ["Fashion Creator", "Model", "Creative Partner"],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Nashville",
