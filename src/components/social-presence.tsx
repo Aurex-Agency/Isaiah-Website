@@ -66,12 +66,12 @@ export function SocialPresence() {
               </EditorialLink>
             </div>
 
-            <div className="mt-10 flex gap-10">
+            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:gap-10">
               {platform.metrics.map((metric) => (
                 <div key={metric.label}>
                   <AnimatedMetric
                     value={metric.value}
-                    className="font-display text-paper text-3xl tabular-nums sm:text-4xl"
+                    className="font-display text-paper text-6xl tabular-nums sm:text-4xl"
                   />
                   <p className="text-paper/55 mt-2 font-sans text-xs tracking-[0.1em] uppercase">
                     {metric.label}

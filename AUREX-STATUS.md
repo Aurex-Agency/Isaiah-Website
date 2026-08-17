@@ -4,31 +4,25 @@ Last updated: 2026-08-17
 
 ## Current phase
 
-**Detail, motion-direction, and visual-density polish pass is complete and verified.** Targets the second review's specific weaknesses: dead desktop space, static-feeling information sections, mid-tier scroll animation, a Social Presence section that needed a signature treatment, and a handful of mobile crops needing independent art direction. **Stopping here for human + ChatGPT visual review.** No additional pages or launch work has been started. The approved visual identity and the prior pass's conversion architecture were not redesigned — refined.
+**Mobile experience and mobile art-direction pass is complete and verified.** Desktop is approved as the baseline and was intentionally not redesigned — the only shared-component change was scoped to a genuine mobile-caused bug (see below) and gated so it doesn't visually affect desktop. **Stopping here for human + ChatGPT mobile visual review.** No additional pages or launch work has been started.
 
 ## What changed this pass
 
-**1. "What Isaiah Creates" rebuilt as a sticky, scroll-linked interactive sequence.** No longer a static stacked list. The section pins (`position: sticky`) for 350vh of scroll on desktop; as the visitor scrolls, one of the four capabilities is "active" at a time — its number and title grow and shift to a denim accent, a vertical progress rail fills alongside the list, and a photograph tied to that capability wipes into view via `clip-path` (not an opacity fade) on the right half. Photos are drawn from the existing Look image set, matched thematically (Brand Content → Around Town, Modeling → Studio, UGC → Away/NYC, Creative Collaborations → The Table) — no new assets needed. Mobile falls back to a plain vertical sequence, not an attempt at the desktop sticky behavior, per the brief.
+**1. "What Isaiah Creates" rebuilt from scratch for mobile.** The prior mobile fallback (a fast, non-sticky pass-through of the desktop list) is gone. Mobile now gets its own sticky scroll sequence, sharing the same 300vh-of-scroll section and underlying scroll-tracking as desktop but with an entirely different mobile-specific layout: eyebrow at top, the single active capability's number and title dominant in the center (masked vertical transition between capabilities, not a receding list), a matching photo wiping in via `clip-path` below, and a description plus "01 / 04"-style progress rail at the bottom. Desktop's markup is untouched, sitting in its own `hidden sm:flex` branch alongside the new `sm:hidden` mobile branch.
 
-**2. Look 04 ("The Table") substantially reworked.** Large two-line typographic statement ("Hospitality / + Experiences") now anchors the section, with the oversized "04" numeral integrated directly behind it (not floating separately), a real opportunity list (Styled Shoots, Events, Hospitality Partnerships, Lifestyle Campaigns), and the hero image given genuine counter-motion — the image parallaxes one direction on scroll while the typography block drifts the opposite way via a negative-range `ParallaxText`.
+**2. Full mobile image-by-image crop audit performed directly**, not assumed. Every Look, the mid-page CTAs, Social Presence, and the inquiry finale portrait were inspected at 390×844, 393×852, and 430×932 using precise scroll-position math (learned from a false-positive earlier in this project: `scrollIntoViewIfNeeded` on tall sections misrepresents crops — see prior status entries). Result: every composition already reads as intentional — full heads, faces, and key styling visible throughout, environmental context preserved in Looks 03/04/06, the Look 05 print-mat treatment intact. No object-position or aspect-ratio overrides were needed; the crops established in earlier passes hold up at all three widths.
 
-**3. Look 03's dead space fixed.** The empty margin beside the fourth "After Dark" image now holds real content: a small "Nashville, TN" / "Look 03 / 06" metadata pair plus a short positioning line ("Editorial-ready for campaigns, events and after-hours coverage"), rather than being solved by enlarging the photo.
+**3. Social Presence metrics enlarged on mobile.** Previously the two stats per platform sat side-by-side at the same size used on desktop — reads as compressed on a narrow screen. Mobile now stacks them vertically at `text-6xl`, giving the numbers real presence, while desktop's side-by-side layout at its existing size is unchanged.
 
-**4. Social Presence rebuilt as the intended signature section.** A large "Social" / "Presence" two-line typographic device now opens it. Both platforms carry a masked, per-character digit-roll reveal (new `AnimatedMetric` component) for stat display — **using clearly-labeled DEMO values only** (12.8K / 8.4% / 6.2K / 428K, matching the brief's own example figures), with an explicit on-page disclaimer ("Metrics shown are placeholder demo values for design review only, pending Isaiah's verified figures") plus a prominent code comment marking the data block as demo-only and not for production. See Open Decisions for exactly what's needed from Isaiah to replace these.
+**4. Touch interactions verified, not just assumed safe.** Tapped the primary CTA and an image directly in a real touch-emulated browser context: navigation works, and no hover effect gets visually "stuck" after a tap (Motion's `whileHover` and the CSS `group-hover` underline/arrow treatments correctly don't trigger on touch, since neither uses touch events to simulate hover).
 
-**5. Visual detail layer added across the site:** the fixed Look-progress tracker now reads "03 / 06" instead of just "03"; a small animated scroll cue was added to the Look 01 hero; every `RevealImage` now carries a subtle 3.5% hover-zoom on desktop pointer devices (disabled specifically on Look 05's matted "print" image, since a physical print shouldn't visually zoom); CTA links got a stronger primary/secondary distinction (primary CTAs are now larger and shift to the denim accent color on hover).
+## A real bug found and fixed during verification
 
-**6. Desktop density increased selectively** in Look 03, Look 04, and "What Isaiah Creates" specifically — the three areas flagged as having the most inactive space — rather than uniformly enlarging photography across the site.
+**Horizontal page overflow on mobile**, caused by Look 06's edge-reveal images (the `direction="left"`/`"right"` entrance added in the previous pass). Root cause: `RevealImage` applied the entrance `transform` and `overflow-hidden` to the _same_ element — moving a box does not cause its own `overflow-hidden` to contain that same movement, since the clip boundary moves with it. The element's initial `-56px` offset was pushing 36px past the viewport edge with nothing upstream to clip it, confirmed directly via `getBoundingClientRect()` on the live DOM. Fixed by splitting `RevealImage` into a stable, never-transformed outer wrapper (owns `overflow-hidden` and the sizing) with the animated entrance moved to an inner `absolute inset-0` layer — the transform is now reliably contained regardless of offset direction or magnitude. Verified zero horizontal overflow (`scrollWidth === clientWidth`) at all three mobile widths, laptop, and desktop after the fix, and confirmed the edge-reveal effect itself still looks and behaves identically once settled.
 
-**7. Mobile crop QA performed directly**, not assumed. Every Look was inspected at 390×844, 393×852, and 430×932 using precise scroll positioning (not `scrollIntoViewIfNeeded`, which produced a false positive during this pass — see below). Result: no real crop problems found; all compositions read as intentional with full heads/faces visible. No mobile-specific object-position overrides were needed beyond what the prior pass already established.
+**Also caught:** a second WCAG AA contrast failure, this time on the new mobile "What Isaiah Creates" progress counter ("01 / 04") — it used `text-ink/55`, a value calibrated in an earlier pass for light-on-dark text, applied here to dark-on-_light_ (paper background) text where it measured 3.79:1 against the 4.5:1 minimum. Bumped to `/70`, matching the other ink-on-paper labels already established in this section. Re-verified clean with axe.
 
-## Two real bugs found and fixed during verification
-
-**Reduced-motion desync in the new sticky section.** The text panel's "active" state (React state, updated via a scroll listener) and the image wipes' reduced-motion fallback (which read that same state) drifted out of sync — at a given scroll position the text would correctly show capability 3 as active while the image stack was still showing capability 1. Root cause: the normal-motion path drives images directly off continuous scroll position, but the reduced-motion path was going through an intermediate React state update instead, introducing lag. Fixed by deriving the reduced-motion image state from the exact same scroll-position calculation as the text panel (a hard-stepped `useTransform`, no interpolation) rather than through state — verified in sync at five checkpoints across the scroll range after the fix, zero console errors.
-
-**A false-positive "cropped head" finding, caught and corrected before reporting it.** An initial mobile QA pass using `scrollIntoViewIfNeeded()` on tall multi-image sections appeared to show Look 02's hero cropping off Isaiah's head entirely. Isolating the exact image element directly, and separately re-verifying with precise scroll-position math instead of `scrollIntoViewIfNeeded`, proved the image renders correctly with full head and body visible — the alignment behavior of `scrollIntoViewIfNeeded` on a section taller than the viewport was landing the screenshot mid-image, not the image itself being miscropped. Re-ran the entire mobile crop QA pass with the reliable method before concluding anything. Worth remembering for future QA passes on this site.
-
-**Also caught:** a Next.js dev-mode warning ("Image with `fill` and parent element with invalid position") introduced by the new hover-zoom wrapper in `RevealImage`, from a non-positioned intermediate `div`. Fixed by giving that wrapper explicit `position: relative`.
+**Re-confirmed the reduced-motion sync fix still holds** for the new mobile-specific markup — checked the mobile title text, progress counter, and image clip states together at five scroll checkpoints in `reducedMotion: 'reduce'` mode; all three stayed perfectly synchronized throughout, zero console errors.
 
 ## Verification completed
 
@@ -36,14 +30,14 @@ Run directly against the implementation, not just inspected:
 
 - `npm run typecheck` — pass
 - `npm run lint` — pass, no warnings
-- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass
+- `npm run test` (Playwright smoke + `@axe-core` WCAG 2.2 AA, desktop + mobile) — 4/4 pass (one real contrast failure caught and fixed, see above)
 - `npm run build` — pass, static homepage
-- `npm run start` (production server) — HTTP 200, zero console errors across desktop 1440px, laptop 1280px, `reducedMotion: 'reduce'`, mobile 390px, and mobile 430px
-- Sticky "What Isaiah Creates" sequence scrolled through step-by-step in both normal and reduced-motion modes, confirmed clean wipe transitions with no seams, and (after the fix above) confirmed the text/image active-state stays in sync throughout
-- Dedicated mobile crop review at 390×844, 393×852, and 430×932 using precise scroll positioning — no real crop issues found
-- Demo social metrics confirmed clearly labeled on-page and in code; grepped for any other unverified statistic-shaped text — none found
-- Social links and all CTAs (`#inquire`, `#social`) verified to navigate correctly with the fixed header no longer clipping target content
-- Swept all new copy for em/en dashes per the constitution's writing standard — clean; only code comments contain them
+- `npm run start` (production server) — HTTP 200, zero console errors across desktop 1440px, laptop 1280px, mobile 390/393/430px, and mobile `reducedMotion: 'reduce'`
+- Horizontal overflow explicitly checked (`document.documentElement.scrollWidth` vs `clientWidth`) at all five of the above — zero overflow anywhere after the fix
+- Mobile sticky "What Isaiah Creates" sequence scrolled through continuously (not discrete jumps) in both normal and reduced-motion modes on mobile viewport — clean entry, clean release, no trapping, no stuck states
+- Full per-Look, per-width mobile crop audit (see above) — no real issues found
+- Touch tap interactions verified directly in a touch-emulated context — CTA navigation works, no stuck hover states
+- Social links and anchor navigation re-verified on mobile
 
 No known open bugs.
 
@@ -53,7 +47,7 @@ Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm, `motion`
 
 ## Open decisions
 
-**Information needed from Isaiah before Social Presence can carry real metrics** (unchanged from prior status, still not resolved — demo values are in place for design review only, per this pass):
+**Information needed from Isaiah before Social Presence can carry real metrics** (unchanged — demo values remain in place for design review only):
 
 - Instagram follower count
 - TikTok follower count
@@ -61,7 +55,7 @@ Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 + React 19, npm, `motion`
 - Monthly or recent view counts, if available
 - Audience demographics, if he can provide them
 
-Demo values (12.8K / 8.4% / 6.2K / 428K) currently populate `social-presence.tsx`'s `PLATFORMS` data, clearly commented as demo-only. Replace with verified numbers directly in that file before launch — do not leave the demo values in a production deploy.
+Demo values (12.8K / 8.4% / 6.2K / 428K) populate `social-presence.tsx`'s `PLATFORMS` data, clearly commented as demo-only, with an on-page disclaimer. Replace with verified numbers directly in that file before launch.
 
 **Carried over from prior status:**
 
@@ -73,6 +67,6 @@ Demo values (12.8K / 8.4% / 6.2K / 428K) currently populate `social-presence.tsx
 
 ## Next recommended action
 
-**Human + ChatGPT visual review of the polished homepage.**
+**Human + ChatGPT mobile visual review.**
 
 Do not begin additional pages or launch-readiness work (domain, email delivery, redirects, analytics, final SEO pass, or replacing demo social metrics with real ones) until that review is complete.
