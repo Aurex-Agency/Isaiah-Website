@@ -16,7 +16,7 @@ const PLATFORMS = [
     handle: "@_.isaiahball",
     href: "https://www.instagram.com/_.isaiahball/",
     metrics: [
-      { label: "Followers", value: "12.8K" },
+      { label: "Followers", value: "2,467" },
       { label: "Engagement", value: "8.4%" },
     ],
   },
@@ -25,7 +25,7 @@ const PLATFORMS = [
     handle: "@_isaiahball",
     href: "https://www.tiktok.com/@_isaiahball",
     metrics: [
-      { label: "Followers", value: "6.2K" },
+      { label: "Followers", value: "2,941" },
       { label: "30-Day Views", value: "428K" },
     ],
   },
