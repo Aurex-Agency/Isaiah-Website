@@ -2,6 +2,16 @@
 
 Last updated: 2026-08-17
 
+## Added 2026-11-25: link-in-bio page (`/links`)
+
+Requested directly by the client lead: a standalone, mobile-first link-in-bio page for Isaiah's Instagram and TikTok bios. Lives at `/links`, separate from the homepage (no shared header/footer), so it can ship independently of the homepage review gate.
+
+- **Content:** a "Collab With Me" card (opens a pre-filled email to `isaiahball2020@gmail.com` with subject and a short brief template: name, brand, project type, details, timeline, budget), a one-tap "Copy" fallback for in-app browsers or devices with no mail app, and Instagram (`@_.isaiahball`) / TikTok (`@_isaiahball`) tiles. All editable at the top of `src/components/links/link-in-bio.tsx`.
+- **Design:** Look 03 hero (after-dark columns) dissolving into an ambient, blurred copy of the same photo, so the palette comes from the image. Same type system as the homepage (Fraunces/Inter, ink/paper/rust).
+- **Motion:** photo settle, letter-by-letter name reveal, staggered card rise, a periodic light sweep on the collab card, hover fill-wipe on social tiles. Under `prefers-reduced-motion`, a CSS rule pins everything to its final state at first paint (verified frame by frame).
+- **Verified:** typecheck, lint, build (static), Playwright smoke + axe on `/` and `/links` (now in the default `AUREX_TEST_ROUTES`), plus axe on the settled, copied, and hover states. One contrast failure caught and fixed (collab card label `ink/60` → `ink/70`). All three links visible without scrolling at 390×700 (typical Instagram in-app browser).
+- **Open:** the production domain is still the `isaiahball.com` placeholder; the bio link becomes `<domain>/links` once the domain is set. No "full portfolio" link yet, since the homepage still shows demo metrics. Adding one is a one-line change once it launches.
+
 ## Current phase
 
 **Mobile experience and mobile art-direction pass is complete and verified.** Desktop is approved as the baseline and was intentionally not redesigned — the only shared-component change was scoped to a genuine mobile-caused bug (see below) and gated so it doesn't visually affect desktop. **Stopping here for human + ChatGPT mobile visual review.** No additional pages or launch work has been started.

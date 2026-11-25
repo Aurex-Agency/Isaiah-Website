@@ -9,8 +9,8 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "npm run test:e2e",
-    "test:e2e": "AUREX_START_COMMAND=\"npm run dev\" playwright test --config quality/playwright/playwright.config.ts",
-    "test:a11y": "AUREX_START_COMMAND=\"npm run dev\" playwright test --config quality/playwright/playwright.config.ts accessibility.spec.ts"
+    "test:e2e": "AUREX_TEST_ROUTES=\"${AUREX_TEST_ROUTES:-/,/links}\" AUREX_START_COMMAND=\"npm run dev\" playwright test --config quality/playwright/playwright.config.ts",
+    "test:a11y": "AUREX_TEST_ROUTES=\"${AUREX_TEST_ROUTES:-/,/links}\" AUREX_START_COMMAND=\"npm run dev\" playwright test --config quality/playwright/playwright.config.ts accessibility.spec.ts"
   },
   "dependencies": {
     "motion": "^13.1.0",
