@@ -74,3 +74,61 @@ body {
 .scroll-cue-line {
   animation: scroll-cue 1.8s ease-in-out infinite;
 }
+
+/* ---------------------------------------------------------------------
+   Link-in-bio page (/links)
+   --------------------------------------------------------------------- */
+
+/* A soft band of light that sweeps across the collab card every few
+   seconds, drawing the eye to the primary action without looping noise. */
+.links-sheen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.links-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% 0;
+  width: 45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-18deg);
+  animation: links-sheen 6s cubic-bezier(0.22, 1, 0.36, 1) 1.8s infinite;
+}
+
+@keyframes links-sheen {
+  0% {
+    transform: translateX(-160%) skewX(-18deg);
+  }
+  28%,
+  100% {
+    transform: translateX(330%) skewX(-18deg);
+  }
+}
+
+/* Film-grain texture over the ambient backdrop. */
+.links-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links-sheen::after {
+    animation: none;
+  }
+
+  /* Pin every entrance-animated element on /links to its final state, so
+     content is there at first paint. `!important` is needed to win over
+     Motion's inline styles. */
+  .links-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
